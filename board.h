@@ -9,6 +9,7 @@ class board;
 void initializeBoard(board *);
 void initializeColumn(board &, const int);
 void displayBoard(board *, int);
+void startingRow(){std::cout << "-------------\nA B C D E F G" << std::endl;}
 
 class board{
 private:
@@ -168,6 +169,7 @@ void displayBoard(board *column){
             column[index].displayByPosition(row);
         std::cout << std::endl;
     }
+    startingRow();
     std::cout << std::endl;
 }
 
@@ -269,12 +271,152 @@ bool rDiagonalCheck1(board *column, int referenceValue, int referenceColumn, int
     // std::cout << column[referenceColumn - 2].coinAtPosition(referenceRow) << std::endl;
 
     std::cout << column[referenceColumn + 1].coinAtPosition(referenceRow + 1) << std::endl;
-    std::cout << column[referenceColumn + 2].coinAtPosition(referenceRow + 1) << std::endl;
-    std::cout << column[referenceColumn + 3].coinAtPosition(referenceRow + 1) << std::endl;
+    std::cout << column[referenceColumn + 2].coinAtPosition(referenceRow + 2) << std::endl;
+    std::cout << column[referenceColumn + 3].coinAtPosition(referenceRow + 2) << std::endl;
 
     if(column[referenceColumn + 1].coinAtPosition(referenceRow + 1) == referenceValue &&
        column[referenceColumn + 2].coinAtPosition(referenceRow + 2) == referenceValue &&
        column[referenceColumn + 3].coinAtPosition(referenceRow + 3) == referenceValue)
+        return true;
+    else
+        return false;
+} 
+
+bool rDiagonalCheck2(board *column, int referenceValue, int referenceColumn, int referenceRow){
+    // 0 0 0 1
+    // 0 0 1 0
+    // 0 1 0 0 original
+    // 1 0 0 0 
+
+    // std::cout << column[referenceColumn - 2].coinAtPosition(referenceRow) << std::endl;
+
+    std::cout << column[referenceColumn - 1].coinAtPosition(referenceRow - 1) << std::endl;
+    std::cout << column[referenceColumn + 1].coinAtPosition(referenceRow + 1) << std::endl;
+    std::cout << column[referenceColumn + 2].coinAtPosition(referenceRow + 2) << std::endl;
+
+    if(column[referenceColumn - 1].coinAtPosition(referenceRow - 1) == referenceValue &&
+       column[referenceColumn + 1].coinAtPosition(referenceRow + 1) == referenceValue &&
+       column[referenceColumn + 2].coinAtPosition(referenceRow + 2) == referenceValue)
+        return true;
+    else
+        return false;
+} 
+
+bool rDiagonalCheck3(board *column, int referenceValue, int referenceColumn, int referenceRow){
+    // 0 0 0 1
+    // 0 0 1 0 original
+    // 0 1 0 0 
+    // 1 0 0 0 
+
+    // std::cout << column[referenceColumn - 2].coinAtPosition(referenceRow) << std::endl;
+
+    std::cout << column[referenceColumn - 2].coinAtPosition(referenceRow - 2) << std::endl;
+    std::cout << column[referenceColumn - 1].coinAtPosition(referenceRow - 1) << std::endl;
+    std::cout << column[referenceColumn + 1].coinAtPosition(referenceRow + 1) << std::endl;
+
+    if(column[referenceColumn - 2].coinAtPosition(referenceRow - 2) == referenceValue &&
+       column[referenceColumn - 1].coinAtPosition(referenceRow - 1) == referenceValue &&
+       column[referenceColumn + 1].coinAtPosition(referenceRow + 1) == referenceValue)
+        return true;
+    else
+        return false;
+} 
+
+bool rDiagonalCheck4(board *column, int referenceValue, int referenceColumn, int referenceRow){
+    // 0 0 0 1 original
+    // 0 0 1 0
+    // 0 1 0 0 
+    // 1 0 0 0 
+
+    // std::cout << column[referenceColumn - 2].coinAtPosition(referenceRow) << std::endl;
+
+    std::cout << column[referenceColumn - 3].coinAtPosition(referenceRow - 3) << std::endl;
+    std::cout << column[referenceColumn - 2].coinAtPosition(referenceRow - 2) << std::endl;
+    std::cout << column[referenceColumn - 1].coinAtPosition(referenceRow - 1) << std::endl;
+
+    if(column[referenceColumn - 3].coinAtPosition(referenceRow - 3) == referenceValue &&
+       column[referenceColumn - 2 ].coinAtPosition(referenceRow - 2) == referenceValue &&
+       column[referenceColumn - 1 ].coinAtPosition(referenceRow - 1) == referenceValue)
+        return true;
+    else
+        return false;
+} 
+
+bool lDiagonalCheck1(board *column, int referenceValue, int referenceColumn, int referenceRow){
+    // 1 0 0 0
+    // 0 1 0 0
+    // 0 0 1 0
+    // 0 0 0 1 original
+
+    // std::cout << column[referenceColumn - 2].coinAtPosition(referenceRow) << std::endl;
+
+    std::cout << column[referenceColumn - 3].coinAtPosition(referenceRow + 3) << std::endl;
+    std::cout << column[referenceColumn - 2].coinAtPosition(referenceRow + 2) << std::endl;
+    std::cout << column[referenceColumn - 1].coinAtPosition(referenceRow + 1) << std::endl;
+
+    if(column[referenceColumn - 3].coinAtPosition(referenceRow + 3) == referenceValue &&
+       column[referenceColumn - 2 ].coinAtPosition(referenceRow + 2) == referenceValue &&
+       column[referenceColumn - 1 ].coinAtPosition(referenceRow + 1) == referenceValue)
+        return true;
+    else
+        return false;
+} 
+
+bool lDiagonalCheck2(board *column, int referenceValue, int referenceColumn, int referenceRow){
+    // 1 0 0 0
+    // 0 1 0 0
+    // 0 0 1 0 original
+    // 0 0 0 1 
+
+    // std::cout << column[referenceColumn - 2].coinAtPosition(referenceRow) << std::endl;
+
+    std::cout << column[referenceColumn - 2].coinAtPosition(referenceRow + 2) << std::endl;
+    std::cout << column[referenceColumn - 1].coinAtPosition(referenceRow + 1) << std::endl;
+    std::cout << column[referenceColumn + 1].coinAtPosition(referenceRow - 1) << std::endl;
+
+    if(column[referenceColumn - 2].coinAtPosition(referenceRow + 2) == referenceValue &&
+       column[referenceColumn - 1].coinAtPosition(referenceRow + 1) == referenceValue &&
+       column[referenceColumn + 1].coinAtPosition(referenceRow - 1) == referenceValue)
+        return true;
+    else
+        return false;
+} 
+
+bool lDiagonalCheck3(board *column, int referenceValue, int referenceColumn, int referenceRow){
+    // 1 0 0 0
+    // 0 1 0 0 original
+    // 0 0 1 0
+    // 0 0 0 1 
+
+    // std::cout << column[referenceColumn - 2].coinAtPosition(referenceRow) << std::endl;
+
+    std::cout << column[referenceColumn - 1].coinAtPosition(referenceRow + 1) << std::endl;
+    std::cout << column[referenceColumn + 1].coinAtPosition(referenceRow - 1) << std::endl;
+    std::cout << column[referenceColumn + 2].coinAtPosition(referenceRow - 2) << std::endl;
+
+    if(column[referenceColumn - 1].coinAtPosition(referenceRow + 1) == referenceValue &&
+       column[referenceColumn + 1].coinAtPosition(referenceRow - 1) == referenceValue &&
+       column[referenceColumn + 2].coinAtPosition(referenceRow - 2) == referenceValue)
+        return true;
+    else
+        return false;
+} 
+
+bool lDiagonalCheck4(board *column, int referenceValue, int referenceColumn, int referenceRow){
+    // 1 0 0 0 original
+    // 0 1 0 0 
+    // 0 0 1 0
+    // 0 0 0 1 
+
+    // std::cout << column[referenceColumn - 2].coinAtPosition(referenceRow) << std::endl;
+
+    std::cout << column[referenceColumn + 1].coinAtPosition(referenceRow - 1) << std::endl;
+    std::cout << column[referenceColumn + 2].coinAtPosition(referenceRow - 2) << std::endl;
+    std::cout << column[referenceColumn + 3].coinAtPosition(referenceRow - 3) << std::endl;
+
+    if(column[referenceColumn + 1].coinAtPosition(referenceRow - 1) == referenceValue &&
+       column[referenceColumn + 2].coinAtPosition(referenceRow - 2) == referenceValue &&
+       column[referenceColumn + 3].coinAtPosition(referenceRow - 3) == referenceValue)
         return true;
     else
         return false;
