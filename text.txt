@@ -1,0 +1,14 @@
+do{
+        try{
+
+        }
+        catch(int winner){
+            std::cout << "DING DING DING WE HAVE A WINNER!\n";
+            std::cout << "Winner: ";
+            if(winner == 1)
+                std::cout << "Player 1\n";
+            else
+                std::cout << "Player 2\n";
+        }
+
+    }while(noWinner);
