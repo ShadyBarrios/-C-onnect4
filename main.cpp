@@ -1,23 +1,25 @@
 #include <iostream>
 #include "board.h"
+#include <cctype>
 
 // check formula
 // (column, column[currentColumn].coinAtPosition(column[currentColumn].getRow()), currentColumn, column[currentColumn].getRow())
 
-void dropping(int, int);
-void charVerification(char &);
-int toInt(char);
-
 int main(){
+    bool invalidPlacement;
     int playerOne = 1;
     int playerTwo = 2;
     bool noWinner;
-    int winner;
+    bool winner;
     int currentColumn;
     int currentPlayer = 0;
+    char charSelection; 
+    int intSelection;
+    int setOfVerifies; // decides which verification methods to use
 
     board *column = new board[numberOfColumns];
     initializeBoard(column);
+    displayBoard(column);
 
     do{
         try{
@@ -28,70 +30,44 @@ int main(){
             else if(currentPlayer == 2)
                 currentPlayer = 1;
 
-            displayBoard(column);
+            
 
             std::cout << "Player " << currentPlayer << ", it is your turn...\n";
 
+            do{
+                std::cout << "Select a column: ";
+                std::cin >> charSelection;
+                charSelection = toupper(charSelection);
+                charVerification(charSelection);
+                intSelection = toInt(charSelection);
+                invalidPlacement = column[intSelection].insertNewCoin(currentPlayer);
 
-            noWinner = false;
+                if(invalidPlacement)
+                    std::cout << "Column " << charSelection << " is full. Try again\n";
+            }while(invalidPlacement);
+
+            winner = verify(column[intSelection].getRow(), intSelection, column);
+
+            displayBoard(column);
+
+            if(winner)
+                throw(currentPlayer);
+
+            winner = false;
         }
-        catch(int winner){
+        catch(int daWinner){
             std::cout << "DING DING DING WE HAVE A WINNER!\n";
             std::cout << "Winner: ";
-            if(winner == 1)
+            if(daWinner == 1)
                 std::cout << "Player 1" << std::endl;
             else
                 std::cout << "Player 2" << std::endl;
 
-            noWinner = false;
+            winner = true;
         }
-    }while(noWinner);
+    }while(winner == false);
 
     std::cout << "Thanks for playing! " << std::endl;
 
     return 0;
-}
-
-void dropping(int col, int play){
-    std::cout << "Dropping " << play << " into column " << col << std::endl;
-}
-
-int toInt(char choice){
-    switch(choice){
-        case 'A':
-            return 0;
-            break;
-        case 'B':
-            return 1;
-            break;
-        case 'C':
-            return 2;
-            break;
-        case 'D':
-            return 3;
-            break;
-        case 'E':
-            return 4;
-            break;
-        case 'F':
-            return 5;
-            break;
-        case 'G':
-            return 6;
-            break;
-    }
-}
-
-void charVerification(char &ch){
-    bool flag;
-    do{
-        flag = true;
-        if(ch == 'A' || ch == 'B' || ch == 'C' || ch == 'D' || ch == 'E' || ch == 'F' || ch == 'G')
-            flag = false;
-        else{
-            std::cout << "That is an invalid row... Try again: ";
-            std::cin >> ch;
-        }
-    }while(flag);
-    
 }
