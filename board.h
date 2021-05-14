@@ -9,6 +9,7 @@ class board;
 void initializeBoard(board *);
 void initializeColumn(board &, const int);
 void displayBoard(board *, int);
+void startingRow(){std::cout << "-------------\nA B C D E F G" << std::endl;}
 
 class board{
 private:
@@ -168,6 +169,7 @@ void displayBoard(board *column){
             column[index].displayByPosition(row);
         std::cout << std::endl;
     }
+    startingRow();
     std::cout << std::endl;
 }
 
