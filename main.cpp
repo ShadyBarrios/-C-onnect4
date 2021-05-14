@@ -11,28 +11,32 @@ int main(){
     int playerTwo = 2;
     bool noWinner;
     int winner;
+    int currentColumn;
 
     board *column = new board[numberOfColumns];
     initializeBoard(column);
 
     displayBoard(column);
 
-    column[1].insertNewCoin(playerOne);
-    column[2].insertNewCoin(playerTwo);
-    column[2].insertNewCoin(playerOne);
-    
-    column[3].insertNewCoin(playerTwo);
+    column[4].insertNewCoin(playerOne);
+
     column[3].insertNewCoin(playerTwo);
     column[3].insertNewCoin(playerOne);
     
-    column[4].insertNewCoin(playerTwo);
-    column[4].insertNewCoin(playerTwo);
-    column[4].insertNewCoin(playerTwo);
-    column[4].insertNewCoin(playerOne);
+    column[2].insertNewCoin(playerTwo);
+    column[2].insertNewCoin(playerTwo);
+    column[2].insertNewCoin(playerOne);
+    
+    column[1].insertNewCoin(playerTwo);
+    column[1].insertNewCoin(playerTwo);
+    column[1].insertNewCoin(playerTwo);
+    column[1].insertNewCoin(playerOne);
 
     displayBoard(column);
 
-    if(rDiagonalCheck1(column, column[1].coinAtPosition(column[1].getRow()), 1, column[1].getRow()))
+    currentColumn = 1;
+
+    if(lDiagonalCheck4(column, column[currentColumn].coinAtPosition(column[currentColumn].getRow()), currentColumn, column[currentColumn].getRow()))
         std::cout << "The system is accurate" << std::endl;
 
     return 0;
